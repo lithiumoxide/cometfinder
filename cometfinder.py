@@ -5,19 +5,23 @@ from scipy.ndimage import label
 import matplotlib.pyplot as plt
 import numpy as np
 
-image1 = scipy.misc.imread('img/20170107_2130_c3_1024.jpg', flatten=1)
-image2 = scipy.misc.imread('img/20170107_2142_c3_1024.jpg', flatten=1)
-image3 = scipy.misc.imread('img/20170107_2154_c3_1024.jpg', flatten=1)
-image4 = scipy.misc.imread('img/20170107_2206_c3_1024.jpg', flatten=1)
+image1 = scipy.misc.imread('img/20170107_2136_c2_1024.jpg', flatten=1)
+image2 = scipy.misc.imread('img/20170107_2148_c2_1024.jpg', flatten=1)
+image4 = scipy.misc.imread('img/20170107_2212_c2_1024.jpg', flatten=1)
+image3 = scipy.misc.imread('img/20170107_2200_c2_1024.jpg', flatten=1)
 
-thold = 70
+thold = 12
 
 diff1 = np.subtract(image1, image2)
-diff2 = np.subtract(image3, image4)
+diff2 = np.subtract(image4, image3)
 diff = np.subtract(diff1, diff2)
 
+x1 = 000
+x2 = 512
+y1 = 512
+y2 = 1024
 
-x = diff[512:1024,000:512].astype(int)
+x = diff[y1:y2,x1:x2].astype(int)
 
 xt = np.where(x<-thold, x,0)
 d1 = np.where(xt==0, xt,-1)
